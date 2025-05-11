@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中文名生成器 | Chinese Name Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- 添加Google字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>中文名生成器</h1>
+            <h2>Chinese Name Generator</h2>
+            <p class="subtitle">获取一个具有中国文化特色的中文名</p>
+        </header>
+
+        <main>
+            <div class="input-section">
+                <label for="english-name">请输入您的英文名 (Enter your English name)</label>
+                <input type="text" id="english-name" placeholder="例如: John, Emma, Michael..." required>
+                <button id="generate-btn">生成中文名 (Generate)</button>
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>正在生成中文名，请稍候...</p>
+                </div>
+            </div>
+
+            <div class="results-section" id="results-section">
+                <h3>为您推荐的中文名</h3>
+                <div class="names-container" id="names-container">
+                    <!-- 结果将通过JavaScript动态生成 -->
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2023 中文名生成器 | 使用 AI 技术提供支持</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
