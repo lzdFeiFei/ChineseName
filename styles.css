@@ -1,11 +1,76 @@
 /* 全局样式 */
 :root {
-  --primary-color: #c62828;
-  --secondary-color: #f9a825;
-  --background-color: #f5f5f5;
+  /* 默认主题（春季） */
+  --primary-color: #7cb342;
+  --secondary-color: #ffca28;
+  --background-color: #f1f8e9;
   --card-color: #ffffff;
-  --text-color: #333333;
-  --border-color: #e0e0e0;
+  --text-color: #33691e;
+  --border-color: #c5e1a5;
+  --accent-color-1: #8bc34a;
+  --accent-color-2: #aed581;
+  --accent-color-3: #dcedc8;
+  
+  /* 季节背景图片 */
+  --season-bg-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"><path d="M25,2 L27,12 L37,12 L29,18 L32,28 L25,22 L18,28 L21,18 L13,12 L23,12 Z" fill="%238bc34a" fill-opacity="0.2"/></svg>');
+  --season-bg-size: 100px 100px;
+  
+  /* 季节动画速度 */
+  --animation-speed: 20s;
+}
+
+/* 夏季主题 */
+body.summer-theme {
+  --primary-color: #f57c00;
+  --secondary-color: #ffeb3b;
+  --background-color: #fff8e1;
+  --card-color: #ffffff;
+  --text-color: #e65100;
+  --border-color: #ffe082;
+  --accent-color-1: #ffa726;
+  --accent-color-2: #ffcc80;
+  --accent-color-3: #ffecb3;
+  
+  --season-bg-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"><circle cx="25" cy="25" r="20" fill="%23ffa726" fill-opacity="0.2"/></svg>');
+  --season-bg-size: 120px 120px;
+  
+  --animation-speed: 15s;
+}
+
+/* 秋季主题 */
+body.autumn-theme {
+  --primary-color: #bf360c;
+  --secondary-color: #ff6f00;
+  --background-color: #fbe9e7;
+  --card-color: #ffffff;
+  --text-color: #3e2723;
+  --border-color: #ffccbc;
+  --accent-color-1: #ff5722;
+  --accent-color-2: #ff8a65;
+  --accent-color-3: #ffab91;
+  
+  --season-bg-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"><path d="M25,2 C15,2 5,15 5,30 C5,40 15,48 25,48 C35,48 45,40 45,30 C45,15 35,2 25,2 Z" fill="%23ff5722" fill-opacity="0.2"/></svg>');
+  --season-bg-size: 150px 150px;
+  
+  --animation-speed: 25s;
+}
+
+/* 冬季主题 */
+body.winter-theme {
+  --primary-color: #1565c0;
+  --secondary-color: #90caf9;
+  --background-color: #e3f2fd;
+  --card-color: #ffffff;
+  --text-color: #0d47a1;
+  --border-color: #bbdefb;
+  --accent-color-1: #2196f3;
+  --accent-color-2: #64b5f6;
+  --accent-color-3: #bbdefb;
+  
+  --season-bg-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"><path d="M25,2 L30,10 L40,12 L32,20 L35,30 L25,25 L15,30 L18,20 L10,12 L20,10 Z" fill="%232196f3" fill-opacity="0.2"/></svg>');
+  --season-bg-size: 80px 80px;
+  
+  --animation-speed: 30s;
 }
 
 * {
@@ -532,5 +597,76 @@ h3 {
   100% {
     border-color: var(--accent-color-1);
     box-shadow: 0 0 10px rgba(106, 27, 154, 0.3);
+  }
+}
+
+/* 季节选择器样式 */
+.season-selector {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.season-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.season-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--card-color);
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.season-btn:hover {
+  transform: scale(1.1);
+}
+
+.season-btn.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* 季节背景效果 */
+body {
+  background-image: var(--season-bg-image);
+  background-size: var(--season-bg-size);
+  transition: background-color 1s ease, color 1s ease;
+}
+
+/* 季节过渡动画 */
+.container, .input-section, .name-card, button, h1, h2, h3, .chinese-name {
+  transition: all 0.8s ease;
+}
+
+/* 季节特有动画 */
+.seasonal-element {
+  position: absolute;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.6;
+  animation: float-seasonal calc(var(--animation-speed) * 1.2) ease-in-out infinite alternate;
+}
+
+@keyframes float-seasonal {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(calc(var(--random-x) * 1px), calc(var(--random-y) * 1px)) rotate(calc(var(--random-rotate) * 1deg));
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
   }
 }
